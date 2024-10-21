@@ -11,8 +11,12 @@ import java.util.Optional;
 @Service
 public class AlunoService {
 
+    private final AlunoRepository alunoRepository;
+
     @Autowired
-    private AlunoRepository alunoRepository;
+    public AlunoService(AlunoRepository alunoRepository) {
+        this.alunoRepository = alunoRepository;
+    }
 
     public List<Aluno> listarTodos() {
         return alunoRepository.findAll();
@@ -22,12 +26,11 @@ public class AlunoService {
         return alunoRepository.findById(id);
     }
 
-    public Aluno Salvar(Aluno aluno) {
+    public Aluno salvar(Aluno aluno) {
         return alunoRepository.save(aluno);
     }
 
     public void deletar(Long id) {
         alunoRepository.deleteById(id);
     }
-
 }
